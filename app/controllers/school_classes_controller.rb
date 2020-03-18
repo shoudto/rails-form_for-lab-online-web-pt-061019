@@ -22,7 +22,6 @@ class SchoolClassesController < ApplicationController
     end
 
     def update
-        byebug
         @school_class = SchoolClass.find(params[:id]) # finding the school class
         @school_class.update(school_class_params(:title, :room_number)) # updating the school class attributes 
         redirect_to school_class_path(@school_class) # redirect to the school class

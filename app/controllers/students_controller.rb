@@ -8,7 +8,6 @@ class StudentsController < ApplicationController
     end 
 
     def create 
-        byebug
         @student = Student.new(student_params(:first_name, :last_name)) # creating a student with attributes 
         @student.save                                                   # Saving the student 
         redirect_to  student_path(@student)                             # direct to that student
