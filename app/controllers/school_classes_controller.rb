@@ -8,7 +8,7 @@ class SchoolClassesController < ApplicationController
     end 
 
     def create
-        @school_class = SchoolClass.new(school_class_params(:title, :room_number)) # creating school class with attributes
+        @school_class = SchoolClass.new(school_class_params) # creating school class with attributes
         @school_class.save # saving the school class 
         redirect_to school_class_path(@school_class) # redirect to school class
     end 
@@ -23,13 +23,19 @@ class SchoolClassesController < ApplicationController
 
     def update
         @school_class = SchoolClass.find(params[:id]) # finding the school class
-        @school_class.update(school_class_params(:title, :room_number)) # updating the school class attributes 
+        @school_class.update(school_class_params) # updating the school class attributes 
         redirect_to school_class_path(@school_class) # redirect to the school class
     end 
 
     private 
 
-    def school_class_params(*args)
-        params.require(:school_class).permit(*args) # private method for using certain params
-    end 
+    # def school_class_params(*args)
+    #     params.require(:school_class).permit(*args) # private method for using certain params
+    # end 
+
+    # different ways of using strong params
+
+    def school_class_params
+        params.require(:school_class).permit(:title, :room_number)
+    end
 end 
