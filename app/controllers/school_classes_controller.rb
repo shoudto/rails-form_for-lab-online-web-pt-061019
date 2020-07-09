@@ -33,7 +33,7 @@ class SchoolClassesController < ApplicationController
     #     params.require(:school_class).permit(*args) # private method for using certain params
     # end 
 
-    # different ways of using strong params
+    # different ways of using strong paramsk
 
     def school_class_params
         params.require(:school_class).permit(:title, :room_number)

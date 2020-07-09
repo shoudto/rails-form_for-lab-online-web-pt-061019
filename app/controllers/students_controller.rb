@@ -8,7 +8,7 @@ class StudentsController < ApplicationController
     end 
 
     def create 
-        @student = Student.new(student_params(:first_name, :last_name)) # creating a student with attributes 
+        @student = Student.new(student_params) # creating a student with attributes 
         @student.save                                                   # Saving the student 
         redirect_to  student_path(@student)                             # direct to that student
     end 
@@ -23,13 +23,19 @@ class StudentsController < ApplicationController
 
     def update
         @student = Student.find(params[:id]) # finding the student 
-        @student.update(student_params(:first_name, :last_name)) # updating the student params or attributes
+        @student.update(student_params) # updating the student params or attributes
         redirect_to student_path(@student)  # direct to student
     end 
 
     private 
 
-    def student_params(*args)
-        params.require(:student).permit(*args) # private method creating a require params for attributes
-    end 
+    # def student_params(*args)
+    #     params.require(:student).permit(*args) # private method creating a require params for attributes
+    # end 
+
+    # another way to use strong params.
+
+    def student_params
+        params.require(:student).permit(:first_name, :last_name)
+    end
 end 
